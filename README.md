@@ -22,7 +22,6 @@ Features
 -   **Cocktail Details:** View cocktail recipes with instructions, ingredients, measurements, and images.
 -   **User Accounts:** Register, log in, update account info, and delete accounts.
 -   **Favorites:** Mark cocktails as favorites and manage your favorites list.
--   **Random Cocktail Generator:** Generate a random cocktail recipe.
 -   **Responsive Design:** Fully responsive website built with Bootstrap.
 -   **API Integration:** Data is fetched from [The Cocktail DB API](https://www.thecocktaildb.com/api.php).
 
