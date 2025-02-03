@@ -1,5 +1,8 @@
-CocktailQuery
+README
 =============
+
+#CocktailQuery: An App for Cocktail Creators & Consumers
+--------------------------------------------------------
 
 Deployed URL
 ------------
