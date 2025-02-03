@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cocktail Details</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation" aria-label="Main Navigation">
+    <div class="container-fluid">
+      <span class="navbar-brand clickable" id="home-link">CocktailQuery</span>
+      <!-- Dropdown navbar toggle for mobile & smaller screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="/login.html" id="login-link" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="/favorites.html" id="favorites-link" class="nav-link" style="display: none;">Favorites</a></li>
+          <li class="nav-item"><a href="/account.html" id="account-link" class="nav-link" style="display: none;">My Account</a></li>
+          <li class="nav-item"><a href="#" id="logout-btn" class="nav-link" style="display: none;">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content area for cocktail details -->
+  <div class="cocktail-details-container" role="main" aria-label="Cocktail Details">
+    <div id="cocktail-container">
+      <!-- Cocktail details will be injected here by cocktailDetails.js -->
+      <h1 id="cocktail-name"></h1>
+      <div class="cocktail-details">
+        <img id="cocktail-image" src="" alt="Cocktail Image">
+        <div class="details-text">
+          <p><strong>Category:</strong> <span id="cocktail-category"></span></p>
+          <p><strong>Alcoholic:</strong> <span id="cocktail-alcoholic"></span></p>
+          <p><strong>Glass:</strong> <span id="cocktail-glass"></span></p>
+          <p><strong>Instructions:</strong> <span id="cocktail-instructions"></span></p>
+          <p><strong>Ingredients:</strong></p>
+          <ul id="cocktail-ingredients"></ul>
+          <!-- Favorite Button -->
+          <button id="favorite-btn" class="favorite-button">Add to Favorites</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/cocktailDetails.js"></script>
+</body>
+</html>

@@ -1,0 +1,870 @@
+/* === General Styles === */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #1C1C1C;
+  color: #EAE0D5;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Navbar Styling === */
+.navbar {
+  background-color: #121212 !important;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: #D4A373 !important;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.navbar-brand:hover {
+  opacity: 0.8;
+}
+
+.navbar-toggler {
+  border: none;
+  color: #fff;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 5px;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #D4A373 !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background-color: #0f3460;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  right: 0;
+  left: auto !important;
+  text-align: center;
+  min-width: 150px;
+}
+
+.dropdown-menu .dropdown-item {
+  color: white !important;
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #16213e;
+}
+
+/* === Homepage Styling === */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  padding-top: 30vh;
+  gap: 2rem;
+}
+
+/* Main Heading */
+.container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-left: -0.5em;
+  margin-bottom: 20px;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+}
+
+/* Search Input */
+.search-box input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: 2px solid #D4A373;
+  background: #292929;
+  color: #EAE0D5;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #b5b5b5;
+}
+
+.search-box input:focus {
+  border-color: #520101;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+/* Search Button */
+.search-box button {
+  padding: 14px 25px;
+  background: #520101;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.search-box button:hover {
+  background: #4a0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+  color: white;
+}
+
+/* Search Suggestions Dropdown */
+#suggestions {
+  list-style: none; 
+  position: absolute;
+  left: 0;
+  top: calc(100% + 5px); 
+  width: 80%; 
+  max-width: 700px;
+  background: #292929;
+  border-radius: 30px;
+  border: 2px solid #D4A373;
+  z-index: 10;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Search Suggestions List */
+#suggestions li {
+  list-style: none; 
+  padding: 14px 20px;
+  color: #EAE0D5;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+#suggestions li:hover,
+#suggestions li.selected {
+  background: #520101;
+  color: #EAE0D5;
+  width: 100%;
+}
+
+/* Homepage Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 30vh;
+  }
+
+  .container h1 {
+    font-size: 2.5rem;
+  }
+
+  .search-box {
+    max-width: 90%;
+  }
+
+  #suggestions {
+    max-width: 90%;
+  }
+}
+
+
+
+/* === Search Results Page === */
+.results-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+/* Search Results Title */
+.results-page-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Cocktails Container */ 
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centers the grid */
+}
+
+/* Cocktail Cards */
+.cocktail-card {
+  flex: 1 1 calc(25% - 20px); /* 4 per row on large screens */
+  max-width: 250px;
+  min-width: 200px;
+  background: #292929;
+  border: 2px solid #D4A373;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s ease-in-out, background 0.3s;
+}
+
+.cocktail-card:hover {
+  transform: scale(1.05);
+}
+
+/* Cocktail Image */
+.cocktail-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Cocktail Name */
+.cocktail-card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-top: 10px;
+}
+
+/* Ingredients Text */
+.cocktail-card p {
+  font-size: 0.9rem;
+  color: #D4A373;
+  margin-top: 5px;
+}
+
+.cocktail-card p strong {
+  font-weight: 600;
+  color: #D4A373;
+}
+
+/* Search Results Responsive Adjustments */
+@media (max-width: 1024px) {
+  .cocktail-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .cocktail-card {
+    flex: 1 1 calc(50% - 20px); /* 2 per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .cocktail-card {
+    flex: 1 1 100%; /* 1 per row */
+    max-width: 100%;
+  }
+}
+
+/* === Heart/Favorite Button (Toggle) === */
+.heart-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Deafult Heart Color */
+.heart-toggle i {
+  color: #D4A373;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Heart color when favorited */
+.heart-toggle i.fas {
+  color: #8B0000;
+}
+
+.heart-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* === Login Page Styling === */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  width: 100%;
+}
+
+.login-form {
+  background: #292929;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #D4A373;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form Heading */
+.login-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.login-form label {
+  align-self: flex-start;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #D4A373;
+  margin-left: 4px;
+  margin-bottom: 7px;
+}
+
+/* Input Fields */
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: 2px solid #D4A373;
+  background: #1C1C1C;
+  color: #EAE0D5;
+  font-size: 1rem;
+  outline: none;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.login-form input::placeholder {
+  color: #b5b5b5;
+}
+
+.login-form input:focus {
+  border-color: #8B0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+/* Login Button */
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background: #520101;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+  margin-top: 15px;
+}
+
+.login-form button:hover {
+  background: #4a0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+/* Register Link */
+.register-link {
+  margin-top: 15px;
+  color: #D4A373;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: #D4A373;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Login Page Responsive Adjustments */
+@media (max-width: 768px) {
+  .login-container {
+    height: 100vh;
+  }
+
+  .login-form {
+    max-width: 52%;
+  }
+}
+
+/* === Register Page Styling === */
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  text-align: center;
+  width: 100%;
+  padding-top: 10vh;
+  padding-bottom: 20px;
+}
+
+.register-form {
+  background: #292929;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #D4A373;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form Heading */
+.register-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-bottom: 10px;
+}
+
+/* Labels */
+.register-form label {
+  align-self: flex-start;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #D4A373;
+  margin-left: 4px;
+  margin-bottom: 5px;
+}
+
+/* Input Fields */
+.register-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: 2px solid #D4A373;
+  background: #1C1C1C;
+  color: #EAE0D5;
+  font-size: 1rem;
+  outline: none;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.register-form input::placeholder {
+  color: #b5b5b5;
+}
+
+.register-form input:focus {
+  border-color: #8B0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+/* Register Button */
+.register-form button {
+  width: 100%;
+  padding: 12px;
+  background: #520101;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.register-form button:hover {
+  background: #4a0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+/* Login Redirect Link */
+.login-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #D4A373;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: #D4A373;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Register Page Responsive Adjustments */
+@media (max-width: 768px) {
+  .register-container {
+    height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .register-form {
+    max-width: 52%;
+  }
+}
+
+/* === Cocktail Details Page === */
+.cocktail-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cocktail Name */
+.cocktail-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-bottom: 20px;
+}
+
+/* Cocktail Details Layout */
+.cocktail-details {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background: #292929;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #D4A373;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 750px;
+}
+
+/* Cocktail Image */
+.cocktail-details img {
+  width: 45%;
+  max-width: 300px;
+  border-radius: 10px;
+  border: 2px solid #D4A373;
+}
+
+/* Cocktail Details Text */
+.details-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #EAE0D5;
+  text-align: left;
+  width: 100%;
+}
+
+/* Cocktail Details Text - Labels */
+.details-text p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.details-text p strong {
+  font-weight: bold;
+  color: #D4A373;
+}
+
+/* Ingredients List */
+#cocktail-ingredients {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#cocktail-ingredients li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  color: #EAE0D5;
+}
+
+/* === Favorite Button (Toggle) === */
+.favorite-button {
+  width: 100%;
+  max-width: 250px;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #8a3e3e;
+  color: white;
+  border: 2px solid #8a3e3e;
+}
+
+/* Add to Favorites Style */
+.favorite-button.add {
+  background: #8a3e3e;
+  color: white;
+  border: 2px solid #8a3e3e;
+}
+
+/* Remove from Favorites Styles */
+.favorite-button.remove {
+  background: #520101;
+  color: white;
+  border: 2px solid #520101;
+}
+
+.favorite-button:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.favorite-button:active {
+  transform: scale(1);
+}
+
+/* Cocktail Details Page Responsive Adjustments */
+@media (max-width: 768px) {
+  .cocktail-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cocktail-details img {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  .details-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  #cocktail-ingredients li {
+    text-align: center;
+  }
+}
+
+/* === Account Page Styling === */
+.account-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  background: #292929;
+  border: 2px solid #D4A373;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;          
+  margin: 110px auto 0 auto;
+}
+
+/* Page Heading */
+.account-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #EAE0D5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Account Fields */
+.account-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.account-field p {
+  font-weight: bold;
+  color: #D4A373;
+  flex: 1;
+  margin: 0;
+}
+
+.account-field span {
+  font-size: 1rem;
+  color: white;
+  flex: 2;
+  text-align: left;
+}
+
+/* Editable Input Fields */
+.account-field input {
+  flex: 2;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid #D4A373;
+  background: #1C1C1C;
+  color: white;
+  font-size: 1rem;
+  text-align: left;
+  display: none;
+}
+
+.account-field.editing span {
+  display: none;
+}
+
+.account-field.editing input {
+  display: block;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.account-btn {
+  padding: 12px 40px;
+  background: #8B0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.account-btn:hover {
+  background: #4a0000;
+  box-shadow: 0 0 5px rgba(139, 0, 0, 0.5);
+}
+
+.account-btn:active {
+  transform: scale(0.98);
+}
+
+/* Delete Button */
+.delete-btn {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #D4A373;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
+  text-align: center;
+}
+
+.delete-btn:hover {
+  color: #8B0000;
+}
+
+/* Custom Error Message */
+.error-message {
+  font-size: 0.9rem;
+  color: #cc0000;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0;
+  display: none;
+}
+
+/* Account Page Responsive Adjustments */
+
+/* For screens up to 768px (mobile/tablet) */
+@media (max-width: 768px) {
+  .account-container {
+    max-width: 90%;
+    padding: 20px;
+    margin-top: 110px;
+  }
+  
+  .account-field {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .account-field p,
+  .account-field span,
+  .account-field input {
+    width: auto;
+  }
+}
+
+/* For very small screens (≤480px): stack fields if needed */
+@media (max-width: 480px) {
+  .account-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .account-field p,
+  .account-field span,
+  .account-field input {
+    width: 100%;
+    text-align: left;
+  }
+}
