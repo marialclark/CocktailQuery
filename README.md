@@ -1,14 +1,13 @@
-Capstone Project: CocktailQuery
-===============================
+CocktailQuery
+=============
+
+An App for Cocktail Creators & Consumers
+
 
 Deployed URL
 ------------
+
 [CocktailQuery](https://cocktailquery-1c6d0c33adcf.herokuapp.com/)
-
-API Link
---------
-
-[The Cocktail DB API](https://www.thecocktaildb.com/api.php)
 
 Project Overview
 ----------------
