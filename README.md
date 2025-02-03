@@ -3,7 +3,7 @@ Capstone Project: CocktailQuery
 
 Deployed URL
 ------------
-[CocktailQuery](https://cocktailquery.herokuapp.com)
+[CocktailQuery](https://cocktailquery-1c6d0c33adcf.herokuapp.com/)
 
 API Link
 --------
