@@ -1,5 +1,5 @@
-Capstone Project: CocktailQuery
-===============================
+CocktailQuery
+=============
 
 Deployed URL
 ------------
