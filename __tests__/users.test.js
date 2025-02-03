@@ -27,15 +27,9 @@ afterAll(async () => {
 
 describe('GET /api/users/:username', () => {
 	test('works for the correct user', async () => {
-		console.log('🔎 Sending Request with Headers:', {
-			Authorization: `Bearer ${u1Token}`,
-		});
 		const response = await request(app)
 			.get('/api/users/testuser1')
 			.set('Authorization', `Bearer ${u1Token}`);
-
-		console.log('📩 Response Status Code:', response.statusCode);
-		console.log('📩 Response Body:', response.body);
 
 		expect(response.statusCode).toBe(200);
 		expect(response.body).toEqual({
