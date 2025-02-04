@@ -491,6 +491,17 @@ body {
   }
 }
 
+@media (max-width: 576px) {
+  .login-container {
+    height: 100vh;
+  }
+
+  .login-form {
+    max-width: 80%;
+  }
+}
+
+
 /* === Register Page Styling === */
 .register-container {
   display: flex;
@@ -609,6 +620,18 @@ body {
 
   .register-form {
     max-width: 52%;
+  }
+}
+
+@media (max-width: 576px) {
+  .register-container {
+    height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .register-form {
+    max-width: 80%;
   }
 }
 
