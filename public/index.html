@@ -36,11 +36,10 @@
   <div class="container d-flex flex-column align-items-center">
     <h1>CocktailQuery</h1>
     <div class="search-box">
-      <!-- Added aria-label for accessibility -->
       <input type="text" id="search-input" placeholder="Search for a cocktail..." aria-label="Search for a cocktail">
       <button id="search-btn" aria-label="Submit search">Search</button>
-      <!-- Suggestions list with aria-live to announce dynamic changes -->
-      <ul id="suggestions" aria-live="polite" aria-label="Search suggestions"></ul>
+      <!-- Suggestions list -->
+      <ul id="suggestions" class="suggestions-list" aria-live="polite" aria-label="Search suggestions"></ul>
     </div>
   </div>
 

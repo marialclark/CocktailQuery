@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const cocktailId = urlParams.get('id');
 	const cocktailContainer = document.getElementById('cocktail-container');
+	const spinner = document.getElementById('loading-spinner');
 
 	if (!cocktailContainer) {
 		console.error('Error: Missing #cocktail-container in the DOM');
@@ -9,12 +10,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	if (!cocktailId) {
-		cocktailContainer.innerHTML = '<p>Invalid cocktail ID.</p>';
+		console.error('Error: Invalid cocktail ID.');
+		cocktailContainer.innerHTML = '<p>Error loading cocktail.</p>';
 		return;
 	}
 
 	const token = localStorage.getItem('authToken');
 	let isFavorited = false;
+
+	// Show spinner before fetching details
+	spinner.style.display = 'block';
+	cocktailContainer.style.display = 'none';
 
 	try {
 		// Fetch cocktail details from the API.
@@ -22,6 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 		if (!res.ok) throw new Error('Cocktail not found');
 
 		const { cocktail } = await res.json();
+
+		// Hide spinner when data is loaded
+		spinner.style.display = 'none';
+		cocktailContainer.style.display = 'block';
 
 		// Populate the container with cocktail details.
 		cocktailContainer.innerHTML = `
@@ -106,5 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	} catch (err) {
 		console.error('Error fetching cocktail details:', err);
 		cocktailContainer.innerHTML = '<p>Failed to load cocktail details.</p>';
+		spinner.style.display = 'none';
+		cocktailContainer.style.display = 'block';
 	}
 });

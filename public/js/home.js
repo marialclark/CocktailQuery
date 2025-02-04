@@ -9,34 +9,47 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Future improvement: Consider debouncing this handler to reduce API calls.
 	searchInput.addEventListener('input', async () => {
 		const query = searchInput.value.trim();
+
 		if (query.length > 0) {
+			suggestionsList.innerHTML = ''; // Clear old suggestions
+			selectedIndex = -1;
+
+			// Show animated "Searching for cocktails..." text
+			const loadingText = document.createElement('li');
+			loadingText.textContent = 'Searching for cocktails';
+			loadingText.classList.add('loading-text');
+			suggestionsList.appendChild(loadingText);
+
+			animateLoadingDots(loadingText);
+
 			try {
 				const res = await fetch(`/api/cocktails?name=${query}`);
 				const data = await res.json();
 
-				suggestionsList.innerHTML = '';
-				selectedIndex = -1;
+				suggestionsList.innerHTML = ''; // Clears searching message
 
 				if (data.cocktails.length > 0) {
 					suggestionsList.style.display = 'block';
-					data.cocktails.forEach((drink, index) => {
-						const li = document.createElement('li');
-						li.textContent = drink.name;
-						li.classList.add('suggestion-item');
-						li.dataset.index = index;
+					suggestionsList.innerHTML = data.cocktails
+						.map((drink) => `<li class="suggestion-item">${drink.name}</li>`)
+						.join('');
 
+					document.querySelectorAll('.suggestion-item').forEach((li, index) => {
+						li.dataset.index = index;
 						li.addEventListener('click', () => {
-							searchInput.value = drink.name;
+							searchInput.value = li.textContent;
 							suggestionsList.style.display = 'none';
 						});
-
-						suggestionsList.appendChild(li);
 					});
 				} else {
 					suggestionsList.style.display = 'none';
 				}
 			} catch (err) {
 				console.error('Error fetching suggestions:', err);
+				suggestionsList.innerHTML = '';
+				suggestionsList.innerHTML =
+					'<li class="suggestion-error-message">Error fetching data</li>';
+				suggestionsList.style.display = 'block';
 			}
 		} else {
 			suggestionsList.style.display = 'none';
@@ -88,4 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			suggestionsList.style.display = 'none';
 		}
 	});
+
+	// Function to animate "..." in "Searching for cocktails..."
+	function animateLoadingDots(element) {
+		let dots = 0;
+		const interval = setInterval(() => {
+			dots = (dots + 1) % 4;
+			element.textContent = `Searching for cocktails${'.'.repeat(dots)}`;
+		}, 500);
+
+		setTimeout(() => clearInterval(interval), 3000);
+	}
 });

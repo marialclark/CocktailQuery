@@ -32,6 +32,8 @@
   
   <!-- Account Container with role and aria-label for accessibility -->
   <div class="account-container" role="main" aria-label="My Account Information">
+    <!-- Spinner that appears while account info loads -->
+    <div id="loading-spinner" class="spinner"></div>
     <h1>My Account</h1>
     
     <!-- Username (Non-Editable) -->
@@ -59,9 +61,14 @@
       <input type="email" id="email-input" class="edit-input" style="display: none;">
     </div>
     
-    <!-- Error Message with role="alert" for screen readers -->
-    <p id="error-message" class="error-message" style="display: none;" role="alert"></p>
-    
+    <div class="message-group">
+      <!-- Error Message with role="alert" for screen readers -->
+     <p id="error-message" class="error-message" style="display: none;" role="alert"></p>
+
+      <!-- Success Message with role="alert" for screen readers -->
+      <p id="success-message" class="success-message" style="display: none;" role="alert"></p>
+    </div>
+
     <!-- Buttons -->
     <div class="button-group">
       <button id="edit-btn" class="account-btn">Edit</button>

@@ -2,9 +2,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const searchQuery = urlParams.get('search');
 	const resultsDiv = document.getElementById('results');
+	const spinner = document.getElementById('loading-spinner');
 
 	const token = localStorage.getItem('authToken');
 	let userFavorites = new Set();
+
+	// Show spinner before fetching results
+	spinner.style.display = 'block';
+	resultsDiv.style.display = 'none';
 
 	// If the user is logged in, fetch their favorite cocktail IDs.
 	if (token) {
@@ -23,6 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 		try {
 			const res = await fetch(`/api/cocktails?search=${searchQuery}`);
 			const data = await res.json();
+
+			// Hide spinner when data is loaded
+			spinner.style.display = 'none';
+			resultsDiv.style.display = 'flex';
 
 			if (data.cocktails.length > 0) {
 				resultsDiv.innerHTML = data.cocktails
@@ -102,8 +111,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 		} catch (err) {
 			console.error('Error fetching search results:', err);
 			resultsDiv.innerHTML = '<p>Failed to load search results.</p>';
+			spinner.style.display = 'none';
+			resultsDiv.style.display = 'flex';
 		}
 	} else {
 		resultsDiv.innerHTML = '<p>Please enter a search term.</p>';
+		spinner.style.display = 'none';
+		resultsDiv.style.display = 'flex';
 	}
 });

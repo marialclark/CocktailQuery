@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const saveBtn = document.getElementById('save-btn');
 	const deleteBtn = document.getElementById('delete-account-btn');
 	const errorMessage = document.getElementById('error-message');
+	const successMessage = document.getElementById('success-message');
+	const loadingSpinner = document.getElementById('loading-spinner');
 
 	if (
 		!usernameDisplay ||
@@ -29,12 +31,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 		!emailDisplay ||
 		!editBtn ||
 		!saveBtn ||
-		!deleteBtn ||
-		!errorMessage
+		!deleteBtn
 	) {
 		console.error('One or more elements are missing on the account page.');
 		return;
 	}
+
+	// Show spinner while loading
+	loadingSpinner.style.display = 'block';
 
 	// Fetch and display user info.
 	try {
@@ -43,6 +47,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 		if (!res.ok) throw new Error('Failed to fetch user info.');
 		const { user } = await res.json();
+
+		// Hide spinner after loading
+		loadingSpinner.style.display = 'none';
 
 		// Populate the display elements.
 		usernameDisplay.textContent = username;
@@ -56,6 +63,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		emailInput.value = user.email;
 	} catch (err) {
 		console.error('Error fetching user data:', err);
+		loadingSpinner.style.display = 'none';
+		accountContainer.innerHTML = `<p>Failed to load account information. Please try again.</p>`;
 	}
 
 	// Switch to edit mode.
@@ -68,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		});
 		saveBtn.style.display = 'inline-block';
 		editBtn.style.display = 'none';
+		successMessage.style.display = 'none';
 	});
 
 	// Save changes.
@@ -83,6 +93,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 			errorMessage.style.display = 'block';
 			return;
 		}
+
+		// Change Save button to loading spinner
+		saveBtn.innerHTML = '<div class="btn-spinner"></div>';
+		saveBtn.disabled = true;
 
 		try {
 			const res = await fetch(`/api/users/${username}`, {
@@ -115,10 +129,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 			saveBtn.style.display = 'none';
 			editBtn.style.display = 'inline-block';
 			errorMessage.style.display = 'none';
-			console.log('Account updated successfully.');
+
+			successMessage.textContent = 'Account updated succesfully.';
+			successMessage.style.display = 'block';
 		} catch (err) {
 			console.error('Error updating account:', err);
 			alert('Failed to update account. Please try again.');
+		} finally {
+			saveBtn.innerHTML = 'Save';
+			saveBtn.disabled = false;
 		}
 	});
 

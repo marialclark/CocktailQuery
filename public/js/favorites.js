@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 		return;
 	}
 
+	// Displays spinner while fetching favorites
+	favoritesContainer.innerHTML = `<div class="spinner"></div>`;
+
 	try {
 		const res = await fetch('/api/favorites', {
 			headers: { Authorization: `Bearer ${token}` },
@@ -49,6 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			})
 		);
 
+		// Remove spinner and display favorites
 		favoritesContainer.innerHTML = cocktailDetails
 			.filter((html) => html !== '')
 			.join('');

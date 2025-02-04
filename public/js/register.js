@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const registerForm = document.getElementById('register-form');
+	const registerButton = document.getElementById('register-btn');
 
 	// Handle registration form submission.
 	registerForm.addEventListener('submit', async (event) => {
@@ -15,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('Please fill out all fields.');
 			return;
 		}
+
+		const registerButtonText = registerButton.innerHTML;
+
+		// Spinner functionality
+		registerButton.innerHTML = '<div class="btn-spinner"></div>';
+		registerButton.disabled = true;
 
 		try {
 			const response = await fetch('/api/auth/register', {
@@ -37,10 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				window.location.href = '/index.html';
 			} else {
 				alert(data.message || 'Registration failed. Please try again.');
+				registerButton.innerHTML = registerButtonText;
+				registerButton.disabled = false;
 			}
 		} catch (err) {
 			console.error('Error registering:', err);
 			alert('An unexpected error occurred. Please try again.');
+			registerButton.innerHTML = registerButtonText;
+			registerButton.disabled = false;
 		}
 	});
 });

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const loginForm = document.getElementById('login-form');
+	const loginButton = document.getElementById('login-btn');
 
 	loginForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
@@ -11,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('Please enter both username and password.');
 			return;
 		}
+
+		const loginButtonText = loginButton.innerHTML;
+
+		// Spinner functionality
+		loginButton.innerHTML = '<div class="btn-spinner"></div>';
+		loginButton.disabled = true;
 
 		try {
 			const response = await fetch('/api/auth/login', {
@@ -27,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				window.location.href = '/index.html';
 			} else {
 				alert(data.message || 'Login failed. Please try again.');
+				loginButton.innerHTML = loginButtonText;
+				loginButton.disabled = false;
 			}
 		} catch (err) {
 			console.error('Error logging in:', err);
 			alert('An unexpected error occurred. Please try again.');
+			loginButton.innerHTML = loginButtonText;
+			loginButton.disabled = false;
 		}
 	});
 });
